@@ -1,0 +1,181 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}About — AFalconeri Technologies{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-breadcrumb">
+      <a href="{% url 'core:home' %}">Home</a> &nbsp;/&nbsp; About
+    </div>
+    <h1 class="page-hero-title">About AFalconeri</h1>
+    <p class="page-hero-sub">A defense technology company built on a conviction that sovereignty requires technological superiority, not dependency.</p>
+  </div>
+</div>
+
+<!-- ── Manifesto Section ─────────────────────────────────────── -->
+<section class="section about-manifesto">
+  <div class="section-inner">
+    <div class="manifesto-layout">
+      <div class="manifesto-left">
+        <div class="section-label reveal">Company Vision</div>
+        <h2 class="section-title reveal stagger-1">The AFalconeri<br>Doctrine</h2>
+
+        <p class="manifesto-text reveal stagger-2">
+          AFalconeri Technologies was established with a singular purpose: to develop <strong>advanced aerospace and defense systems</strong> that provide strategic and tactical superiority to those who defend sovereign territory and democratic institutions.
+        </p>
+        <p class="manifesto-text reveal stagger-3">
+          We operate at the intersection of <strong>aerospace engineering, artificial intelligence, and defense electronics</strong> — developing platforms that are not incremental improvements on existing designs, but genuine step-changes in operational capability.
+        </p>
+        <p class="manifesto-text reveal stagger-4">
+          Our founding team brings together expertise from <strong>military aviation, advanced manufacturing, AI research, and signals intelligence</strong>. We understand the operational environment because we have operated within it, and we build technology that reflects the reality of modern conflict.
+        </p>
+        <p class="manifesto-text reveal stagger-5">
+          We are not a traditional defense contractor. We are a <strong>technology-first organization</strong> that applies the velocity and innovation culture of a high-performance engineering company to the uncompromising standards of defense systems development. That combination — speed, rigor, and operational understanding — is our competitive advantage.
+        </p>
+
+        <div class="reveal stagger-6" style="margin-top: 40px;">
+          <a href="{% url 'core:contact' %}" class="btn btn-primary">Engage With Us <span class="btn-arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="manifesto-right reveal-right">
+        <div class="doctrine-list">
+          <div class="doctrine-item">
+            <div class="doctrine-num">I</div>
+            <div>
+              <div class="doctrine-title">Sovereignty First</div>
+              <div class="doctrine-text">No nation should depend on foreign technology for its defense. We build systems designed to ensure indigenous aerospace capability for our partners.</div>
+            </div>
+          </div>
+          <div class="doctrine-item">
+            <div class="doctrine-num">II</div>
+            <div>
+              <div class="doctrine-title">Operational Truth</div>
+              <div class="doctrine-text">We design for the battlefield as it exists, not as theoretical exercises assume. Every system undergoes adversarial testing before deployment consideration.</div>
+            </div>
+          </div>
+          <div class="doctrine-item">
+            <div class="doctrine-num">III</div>
+            <div>
+              <div class="doctrine-title">Technology Velocity</div>
+              <div class="doctrine-text">Defense procurement cycles are too slow for modern threats. We maintain rapid development pipelines that can respond to emerging operational requirements.</div>
+            </div>
+          </div>
+          <div class="doctrine-item">
+            <div class="doctrine-num">IV</div>
+            <div>
+              <div class="doctrine-title">Ethical Boundaries</div>
+              <div class="doctrine-text">We maintain rigorous standards on who we supply and for what purpose. Our technology supports defense of populations — not their suppression.</div>
+            </div>
+          </div>
+          <div class="doctrine-item">
+            <div class="doctrine-num">V</div>
+            <div>
+              <div class="doctrine-title">Human Authority</div>
+              <div class="doctrine-text">Autonomous systems under our architecture maintain human authority over lethal force decisions. AI enhances operators — it does not replace their judgment.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Timeline ───────────────────────────────────────────────── -->
+<section class="section about-timeline">
+  <div class="section-inner">
+    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start;">
+      <div>
+        <div class="section-label reveal">Development History</div>
+        <h2 class="section-title reveal stagger-1">Company Timeline</h2>
+        <p style="font-size: 0.9rem; color: var(--gray-text); line-height: 1.7;" class="reveal stagger-2">
+          From initial concept to operational systems. AFalconeri Technologies has moved rapidly from research through prototype to active platform deployment.
+        </p>
+      </div>
+
+      <div class="timeline-track reveal">
+        <div class="timeline-node">
+          <div class="timeline-year">2022 — FOUNDING</div>
+          <div class="timeline-title">Company Established</div>
+          <div class="timeline-text">AFalconeri Technologies incorporated. Initial R&D team assembled from aerospace and defense backgrounds. Concept studies initiated for surveillance platform architecture.</div>
+        </div>
+        <div class="timeline-node">
+          <div class="timeline-year">2023 — PROTOTYPE</div>
+          <div class="timeline-title">Falcon X1 First Flight</div>
+          <div class="timeline-text">Falcon X1 prototype completes maiden flight. EO/IR payload integration validated. 12-hour endurance achieved in initial test configuration. Encrypted datalink performance confirmed.</div>
+        </div>
+        <div class="timeline-node">
+          <div class="timeline-year">2023 — DEVELOPMENT</div>
+          <div class="timeline-title">Falcon X2 Design Finalized</div>
+          <div class="timeline-text">Tactical UAV airframe design finalized following extensive CFD optimization. Modular payload architecture approved. Manufacturing partner contracts initiated.</div>
+        </div>
+        <div class="timeline-node">
+          <div class="timeline-year">2024 — OPERATIONAL</div>
+          <div class="timeline-title">Falcon X1 Operational Clearance</div>
+          <div class="timeline-text">Falcon X1 achieves operational status following extended validation program. 18-hour endurance record established. First partner procurement contracts signed.</div>
+        </div>
+        <div class="timeline-node">
+          <div class="timeline-year">2024 — PROTOTYPE</div>
+          <div class="timeline-title">Falcon L3 Development Begins</div>
+          <div class="timeline-text">Loitering munition program initiated. AI targeting subsystem development commenced. Tube-launch configuration validated in static testing.</div>
+        </div>
+        <div class="timeline-node">
+          <div class="timeline-year">ONGOING — CLASSIFIED</div>
+          <div class="timeline-title">Advanced Programs</div>
+          <div class="timeline-text">Multiple classified development programs active across advanced strike systems, electronic warfare, and autonomous swarm architectures. Details available under NDA.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Team Philosophy ────────────────────────────────────────── -->
+<section class="section" style="background: var(--black);">
+  <div class="section-inner">
+    <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+      <div class="section-label reveal" style="justify-content: center;">Our People</div>
+      <h2 class="section-title reveal stagger-1" style="text-align: center;">Built by Operators<br>and Engineers</h2>
+      <p style="font-size: 1rem; color: var(--gray-text); line-height: 1.9; margin-bottom: 48px;" class="reveal stagger-2">
+        The defining characteristic of AFalconeri Technologies is that our engineering team includes people who have operated the systems we are now building to replace. That operational foundation means we have never confused a specification with a requirement, or a demonstration with a deployment. We understand what breaks in the field, what operators actually need, and what the adversary is actually capable of. That understanding shapes everything we build.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--gray-line); border: 1px solid var(--gray-line);" class="reveal stagger-3">
+        <div style="background: var(--black-2); padding: 32px 24px; text-align: center;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 6px;">15+</div>
+          <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--gray-text); letter-spacing: 0.25em; text-transform: uppercase;">Engineering Staff</div>
+        </div>
+        <div style="background: var(--black-2); padding: 32px 24px; text-align: center;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 6px;">4</div>
+          <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--gray-text); letter-spacing: 0.25em; text-transform: uppercase;">Active Platforms</div>
+        </div>
+        <div style="background: var(--black-2); padding: 32px 24px; text-align: center;">
+          <div style="font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 6px;">3</div>
+          <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--gray-text); letter-spacing: 0.25em; text-transform: uppercase;">Continents of Operation</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Compliance Section ─────────────────────────────────────── -->
+<div style="background: var(--black-2); border-top: 1px solid var(--gray-line); padding: 60px;">
+  <div style="max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;">
+    <div class="reveal">
+      <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--red); letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 12px;">ITAR Compliance</div>
+      <div style="font-size: 0.85rem; color: var(--gray-text); line-height: 1.7;">All defense systems and technical data are controlled under ITAR regulations. Export without proper authorization is strictly prohibited and will not be facilitated.</div>
+    </div>
+    <div class="reveal stagger-2">
+      <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--red); letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 12px;">End-Use Verification</div>
+      <div style="font-size: 0.85rem; color: var(--gray-text); line-height: 1.7;">All procurement inquiries are subject to rigorous end-user verification, jurisdiction assessment, and compliance review before any technical engagement proceeds.</div>
+    </div>
+    <div class="reveal stagger-4">
+      <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--red); letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 12px;">Ethical Commitments</div>
+      <div style="font-size: 0.85rem; color: var(--gray-text); line-height: 1.7;">AFalconeri Technologies maintains a policy of non-engagement with actors engaged in or credibly suspected of human rights violations, regardless of financial consideration.</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

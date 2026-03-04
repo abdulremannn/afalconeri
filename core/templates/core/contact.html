@@ -1,0 +1,192 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Contact — AFalconeri Technologies{% endblock %}
+
+{% block content %}
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-breadcrumb">
+      <a href="{% url 'core:home' %}">Home</a> &nbsp;/&nbsp; Secure Contact
+    </div>
+    <h1 class="page-hero-title">Secure Contact</h1>
+    <p class="page-hero-sub">All inquiries are reviewed by our defense liaison team. Unauthorized or non-qualified inquiries will not receive a response.</p>
+  </div>
+</div>
+
+<section class="section" style="background: var(--black);">
+  <div class="section-inner">
+    <div class="contact-layout">
+
+      <!-- ── Contact Info ──────────────────────────────────────── -->
+      <div class="contact-info reveal-left">
+        <div class="section-label">Contact Information</div>
+        <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 40px;">Engage the<br>Defense Division</h2>
+
+        <div class="contact-detail">
+          <div class="contact-detail-label">Defense Procurement</div>
+          <div class="contact-detail-value">defense@afalconeri.com</div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-label">Strategic Partnerships</div>
+          <div class="contact-detail-value">partners@afalconeri.com</div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-label">Civil Surveillance Division</div>
+          <div class="contact-detail-value">civil@afalconeri.com</div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-label">Security Classification</div>
+          <div class="contact-detail-value">
+            Unclassified inquiries via web form.<br>
+            Classified engagements via secure channel upon NDA execution.
+          </div>
+        </div>
+
+        <div class="contact-detail">
+          <div class="contact-detail-label">Response Protocol</div>
+          <div class="contact-detail-value">
+            Qualified defense procurement: 24–48 hours<br>
+            Partnership inquiries: 3–5 business days<br>
+            Civil applications: 5–7 business days
+          </div>
+        </div>
+
+        <div class="contact-disclaimer">
+          <div class="contact-disclaimer-text">
+            ⚠ NOTICE: This contact form is monitored. All submissions are logged and verified against international sanctions lists. Submission constitutes acknowledgment of applicable export control regulations. False representation is a federal offense.
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Contact Form ──────────────────────────────────────── -->
+      <div class="reveal">
+
+        {% if success %}
+        <div class="success-message">
+          <div class="success-icon">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="24" cy="24" r="20"/>
+              <polyline points="16,24 22,30 32,18"/>
+            </svg>
+          </div>
+          <div class="success-title">Transmission Received</div>
+          <div class="success-text">
+            Your inquiry has been received and logged.<br>
+            Our defense liaison team will evaluate and respond through appropriate channels within the stated response window.
+          </div>
+        </div>
+        {% else %}
+
+        <div class="contact-form-wrap">
+          <div style="margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid var(--gray-line);">
+            <div style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--red); letter-spacing: 0.35em; text-transform: uppercase; margin-bottom: 8px;">Secure Inquiry Form</div>
+            <div style="font-size: 0.85rem; color: var(--gray-muted);">All fields are required. Provide accurate organizational information.</div>
+          </div>
+
+          <form method="post" class="contact-form" novalidate>
+            {% csrf_token %}
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="id_name">Full Name</label>
+                <input type="text"
+                       class="form-control {% if form.name.errors %}is-invalid{% endif %}"
+                       id="id_name"
+                       name="name"
+                       value="{{ form.name.value|default:'' }}"
+                       placeholder="Full Name"
+                       required>
+                {% if form.name.errors %}
+                <div class="form-error">{{ form.name.errors.0 }}</div>
+                {% endif %}
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="id_organization">Organization</label>
+                <input type="text"
+                       class="form-control {% if form.organization.errors %}is-invalid{% endif %}"
+                       id="id_organization"
+                       name="organization"
+                       value="{{ form.organization.value|default:'' }}"
+                       placeholder="Organization / Entity"
+                       required>
+                {% if form.organization.errors %}
+                <div class="form-error">{{ form.organization.errors.0 }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="id_email">Official Email</label>
+                <input type="email"
+                       class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                       id="id_email"
+                       name="email"
+                       value="{{ form.email.value|default:'' }}"
+                       placeholder="official@organization.gov"
+                       required>
+                {% if form.email.errors %}
+                <div class="form-error">{{ form.email.errors.0 }}</div>
+                {% endif %}
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="id_inquiry_type">Inquiry Type</label>
+                <select class="form-control {% if form.inquiry_type.errors %}is-invalid{% endif %}"
+                        id="id_inquiry_type"
+                        name="inquiry_type"
+                        required>
+                  <option value="">Select Inquiry Type</option>
+                  <option value="defense_systems" {% if form.inquiry_type.value == 'defense_systems' %}selected{% endif %}>Defense Systems</option>
+                  <option value="surveillance" {% if form.inquiry_type.value == 'surveillance' %}selected{% endif %}>Surveillance Solutions</option>
+                  <option value="uav_procurement" {% if form.inquiry_type.value == 'uav_procurement' %}selected{% endif %}>UAV Procurement</option>
+                  <option value="partnership" {% if form.inquiry_type.value == 'partnership' %}selected{% endif %}>Strategic Partnership</option>
+                  <option value="civil_applications" {% if form.inquiry_type.value == 'civil_applications' %}selected{% endif %}>Civil Applications</option>
+                  <option value="media" {% if form.inquiry_type.value == 'media' %}selected{% endif %}>Media & Press</option>
+                  <option value="other" {% if form.inquiry_type.value == 'other' %}selected{% endif %}>Other</option>
+                </select>
+                {% if form.inquiry_type.errors %}
+                <div class="form-error">{{ form.inquiry_type.errors.0 }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="id_message">Inquiry Detail</label>
+              <textarea class="form-control {% if form.message.errors %}is-invalid{% endif %}"
+                        id="id_message"
+                        name="message"
+                        rows="6"
+                        placeholder="Describe your inquiry, requirements, and organizational context..."
+                        required>{{ form.message.value|default:'' }}</textarea>
+              {% if form.message.errors %}
+              <div class="form-error">{{ form.message.errors.0 }}</div>
+              {% endif %}
+            </div>
+
+            <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 28px; padding: 16px 20px; background: var(--black-3); border: 1px solid var(--gray-line);">
+              <input type="checkbox" id="terms" required style="margin-top: 2px; accent-color: var(--red); flex-shrink: 0;">
+              <label for="terms" style="font-family: var(--font-mono); font-size: 0.55rem; color: var(--gray-muted); letter-spacing: 0.1em; text-transform: uppercase; line-height: 1.7; cursor: pointer;">
+                I confirm that I am authorized to represent the stated organization, that my inquiry is in compliance with applicable export control regulations, and that the information provided is accurate.
+              </label>
+            </div>
+
+            <button type="submit" class="form-submit">
+              Transmit Secure Inquiry &nbsp; →
+            </button>
+          </form>
+        </div>
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

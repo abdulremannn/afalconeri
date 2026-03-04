@@ -1,0 +1,43 @@
+{% extends 'core/admin/base_admin.html' %}
+{% block title %}Edit {{ cap.title }}{% endblock %}
+{% block nav_cap %}active{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-label">Editing Capability — {{ cap.number }}</div>
+  <div class="page-header-title">{{ cap.title }}</div>
+  <div class="page-header-sub">{{ cap.subtitle }}</div>
+</div>
+<form method="post">
+  {% csrf_token %}
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Section Details</div>
+      <div class="form-group">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-control" value="{{ cap.title }}" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Subtitle</label>
+        <input type="text" name="subtitle" class="form-control" value="{{ cap.subtitle }}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" style="min-height:140px;">{{ cap.description }}</textarea>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-title">Capability Items</div>
+      <div class="form-group">
+        <label class="form-label">Items (one per line)</label>
+        <textarea name="items" class="form-control" style="min-height:220px;" placeholder="Composite Airframe Design&#10;CFD Simulation&#10;Propulsion Integration">{{ items_str }}</textarea>
+        <div class="form-hint">Each line becomes one capability tag on the website</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:12px;margin-top:4px;">
+    <button type="submit" class="btn btn-primary">Save Changes &rarr;</button>
+    <a href="{% url 'core:admin_capabilities' %}" class="btn btn-outline">Cancel</a>
+    <a href="{% url 'core:capabilities' %}#{{ cap.cap_id }}" target="_blank" class="btn btn-outline" style="margin-left:auto;">Preview on Site &#8599;</a>
+  </div>
+</form>
+{% endblock %}

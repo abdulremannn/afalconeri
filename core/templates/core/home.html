@@ -1,0 +1,152 @@
+{% extends 'core/base.html' %}
+
+
+{% load static %}
+{% block title %}AFalconeri Technologies — Engineering Strategic Superiority{% endblock %}
+{% block content %}
+
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-scan-line" aria-hidden="true"></div>
+  <div class="hero-drone-silhouette" aria-hidden="true">
+    <svg class="drone-svg" viewBox="0 0 600 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="250" y="170" width="100" height="60" rx="4" fill="white" opacity="0.9"/>
+      <rect x="265" y="155" width="70" height="15" rx="2" fill="white" opacity="0.7"/>
+      <rect x="275" y="225" width="50" height="40" rx="2" fill="white" opacity="0.6"/>
+      <rect x="100" y="193" width="150" height="4" rx="2" fill="white" opacity="0.8"/>
+      <rect x="350" y="193" width="150" height="4" rx="2" fill="white" opacity="0.8"/>
+      <rect x="155" y="110" width="4" height="160" rx="2" fill="white" opacity="0.8"/>
+      <rect x="441" y="110" width="4" height="160" rx="2" fill="white" opacity="0.8"/>
+      <ellipse cx="130" cy="193" rx="50" ry="8" fill="white" opacity="0.3"/>
+      <ellipse cx="470" cy="193" rx="50" ry="8" fill="white" opacity="0.3"/>
+      <ellipse cx="157" cy="130" rx="8" ry="50" fill="white" opacity="0.3"/>
+      <ellipse cx="443" cy="130" rx="8" ry="50" fill="white" opacity="0.3"/>
+      <circle cx="130" cy="193" r="8" fill="white" opacity="0.9"/>
+      <circle cx="470" cy="193" r="8" fill="white" opacity="0.9"/>
+      <circle cx="157" cy="130" r="8" fill="white" opacity="0.9"/>
+      <circle cx="443" cy="130" r="8" fill="white" opacity="0.9"/>
+      <circle cx="300" cy="235" r="12" fill="white" opacity="0.5"/>
+      <circle cx="300" cy="235" r="6" fill="white" opacity="0.8"/>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag" aria-hidden="true">AFT — Advanced Defense Systems</div>
+    <h1 class="hero-headline">Engineering<br><span class="accent">Strategic</span><br>Superiority</h1>
+    <p class="hero-sub">Next-generation surveillance, tactical UAV, and loitering munition systems engineered for decisive advantage in modern operational environments.</p>
+    <div class="hero-actions">
+      <a href="{% url 'core:systems' %}" class="btn btn-primary">Explore Systems <span class="btn-arrow">→</span></a>
+      <a href="{% url 'core:capabilities' %}" class="btn btn-outline">Capabilities</a>
+    </div>
+  </div>
+  <div class="hero-stats" aria-hidden="true">
+    <div class="hero-stat"><div class="hero-stat-num">4</div><div class="hero-stat-label">Active Platforms</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">120km</div><div class="hero-stat-label">Max Range</div></div>
+    <div class="hero-stat"><div class="hero-stat-num">18hr</div><div class="hero-stat-label">Endurance Record</div></div>
+  </div>
+  <div class="hero-scroll-indicator" aria-hidden="true">
+    <div class="hero-scroll-line"></div>
+    <span class="hero-scroll-text">Scroll</span>
+  </div>
+</section>
+
+<div class="mission-strip">
+  <div class="mission-strip-inner">
+    <div class="mission-item reveal">
+      <div class="mission-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="16" cy="16" r="12"/><circle cx="16" cy="16" r="4"/><line x1="16" y1="4" x2="16" y2="1"/><line x1="16" y1="31" x2="16" y2="28"/><line x1="4" y1="16" x2="1" y2="16"/><line x1="31" y1="16" x2="28" y2="16"/></svg></div>
+      <div><div class="mission-item-title">Persistent ISR</div><div class="mission-item-text">Long-endurance platforms delivering uninterrupted battlefield awareness.</div></div>
+    </div>
+    <div class="mission-divider"></div>
+    <div class="mission-item reveal stagger-2">
+      <div class="mission-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="16,2 30,28 2,28"/><line x1="16" y1="12" x2="16" y2="20"/><circle cx="16" cy="24" r="1.5" fill="currentColor"/></svg></div>
+      <div><div class="mission-item-title">Precision Strike</div><div class="mission-item-text">AI-guided munition systems with abort and re-engage capability.</div></div>
+    </div>
+    <div class="mission-divider"></div>
+    <div class="mission-item reveal stagger-4">
+      <div class="mission-icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="24" height="16" rx="2"/><line x1="4" y1="16" x2="28" y2="16"/><circle cx="16" cy="16" r="3"/></svg></div>
+      <div><div class="mission-item-title">Secure C2</div><div class="mission-item-text">AES-256 encrypted command infrastructure for contested environments.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- Systems pulled from database -->
+<section class="section systems-preview" style="background:var(--black);">
+  <div class="section-inner">
+    <div class="section-label reveal">Platform Registry</div>
+    <h2 class="section-title reveal stagger-1">Active Systems</h2>
+    <p class="section-subtitle reveal stagger-2">Four advanced platforms spanning surveillance, tactical strike, and civil applications — engineered for operational dominance.</p>
+    <div class="systems-grid">
+      {% for system in systems %}
+      <div class="system-card-preview reveal stagger-{{ forloop.counter }}">
+        <div class="system-card-img-placeholder">
+          {% if system.image %}<img src="{{ system.image }}" alt="{{ system.name }}">{% endif %}
+          <div class="system-visual-grid" aria-hidden="true"></div>
+          {% if not system.image %}
+          <svg class="drone-icon-placeholder" width="72" height="72" viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1">
+            {% if forloop.counter == 1 %}<rect x="30" y="32" width="20" height="16" rx="2"/><line x1="10" y1="40" x2="30" y2="40"/><line x1="50" y1="40" x2="70" y2="40"/><circle cx="10" cy="40" r="5"/><circle cx="70" cy="40" r="5"/>
+            {% elif forloop.counter == 2 %}<polygon points="40,10 70,65 10,65"/><line x1="40" y1="30" x2="40" y2="50"/>
+            {% elif forloop.counter == 3 %}<ellipse cx="40" cy="40" rx="25" ry="12"/><line x1="40" y1="28" x2="40" y2="16"/><circle cx="40" cy="13" r="4"/>
+            {% else %}<rect x="28" y="30" width="24" height="14" rx="2"/><line x1="5" y1="37" x2="28" y2="37"/><line x1="52" y1="37" x2="75" y2="37"/><circle cx="5" cy="37" r="4"/><circle cx="75" cy="37" r="4"/>{% endif %}
+          </svg>
+          {% endif %}
+        </div>
+        <div class="system-card-class">{{ system.class }}</div>
+        <div class="system-card-name">{{ system.name }}</div>
+        <div class="system-card-desig">{{ system.designation }}</div>
+        <p class="system-card-desc">{{ system.description|truncatewords:18 }}</p>
+        <a href="{% url 'core:systems' %}#{{ system.id }}" class="system-card-link">View System <span>→</span></a>
+        <div class="system-card-num" aria-hidden="true">{{ forloop.counter|stringformat:"02d" }}</div>
+      </div>
+      {% endfor %}
+    </div>
+    <div style="margin-top:clamp(24px,4vw,40px);text-align:center;" class="reveal">
+      <a href="{% url 'core:systems' %}" class="btn btn-outline">View Full Platform Registry <span class="btn-arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<div class="tech-strip">
+  <div class="tech-strip-inner">
+    <div class="tech-strip-item reveal"><div class="tech-strip-num">01</div><div class="tech-strip-title">Aerospace Engineering</div><div class="tech-strip-text">Full-cycle composite airframe design and CFD simulation.</div></div>
+    <div class="tech-strip-item reveal stagger-1"><div class="tech-strip-num">02</div><div class="tech-strip-title">AI Targeting</div><div class="tech-strip-text">Neural networks for real-time target classification and tracking.</div></div>
+    <div class="tech-strip-item reveal stagger-2"><div class="tech-strip-num">03</div><div class="tech-strip-title">GPS-Denied Nav</div><div class="tech-strip-text">INS/VIO fusion for contested electromagnetic environments.</div></div>
+    <div class="tech-strip-item reveal stagger-3"><div class="tech-strip-num">04</div><div class="tech-strip-title">Defense Electronics</div><div class="tech-strip-text">Full-spectrum EW suites and SIGINT payloads.</div></div>
+    <div class="tech-strip-item reveal stagger-4"><div class="tech-strip-num">05</div><div class="tech-strip-title">Secure Comms</div><div class="tech-strip-text">AES-256 encrypted C2 with FHSS datalinks.</div></div>
+  </div>
+</div>
+
+<section class="section" style="background:var(--black);">
+  <div class="section-inner">
+    <div class="vision-layout">
+      <div>
+        <div class="section-label reveal">Strategic Vision</div>
+        <h2 class="section-title reveal stagger-1">Sovereignty Through<br>Technology</h2>
+        <blockquote class="vision-quote reveal stagger-2">"The nation that controls the aerial domain controls the battlespace. We build the systems that ensure that control belongs to those who defend freedom."</blockquote>
+        <p class="vision-body reveal stagger-3">AFalconeri Technologies was founded on a singular conviction: that advanced aerospace and defense capability should not be the exclusive domain of legacy industrial giants.</p>
+        <div class="reveal stagger-4"><a href="{% url 'core:about' %}" class="btn btn-outline">Our Doctrine <span class="btn-arrow">→</span></a></div>
+      </div>
+      <div class="vision-right">
+        <div class="vision-metric reveal stagger-1"><div class="vision-metric-value">18 HRS</div><div class="vision-metric-label">Maximum Endurance — Falcon X1</div></div>
+        <div class="vision-metric reveal stagger-2"><div class="vision-metric-value">200 KM</div><div class="vision-metric-label">Operational Range — Falcon X2</div></div>
+        <div class="vision-metric reveal stagger-3"><div class="vision-metric-value">90 MIN</div><div class="vision-metric-label">Loiter Time — Falcon L3</div></div>
+        <div class="vision-metric reveal stagger-4"><div class="vision-metric-value">256-BIT</div><div class="vision-metric-label">Encryption Standard — All Platforms</div></div>
+        <div class="reveal stagger-5" style="margin-top:4px;padding:clamp(14px,2vw,20px) clamp(16px,2.5vw,22px);border:1px solid rgba(204,0,0,.2);background:rgba(204,0,0,.04);">
+          <div style="font-family:var(--fm);font-size:.52rem;color:var(--red);letter-spacing:.3em;text-transform:uppercase;margin-bottom:7px;">ITAR Compliance Notice</div>
+          <div style="font-size:clamp(.76rem,1.2vw,.82rem);color:var(--gray-muted);line-height:1.6;">All systems are subject to export control regulations. Inquiries subject to jurisdiction verification.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-banner">
+  <div class="cta-banner-grid" aria-hidden="true"></div>
+  <div class="cta-banner-inner">
+    <div class="cta-banner-tag">Authorized Inquiries Only</div>
+    <h2 class="cta-banner-title">Engage with Our Defense Division</h2>
+    <p class="cta-banner-text">For qualified defense procurement, strategic partnerships, and civil surveillance inquiries.</p>
+    <a href="{% url 'core:contact' %}" class="btn-white">Initiate Secure Contact <span>→</span></a>
+  </div>
+</div>
+
+{% endblock %}

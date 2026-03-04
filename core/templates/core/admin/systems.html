@@ -1,0 +1,40 @@
+{% extends 'core/admin/base_admin.html' %}
+{% block title %}Drone Systems{% endblock %}
+{% block nav_sys %}active{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-label">Content Management</div>
+  <div class="page-header-title">Drone Systems</div>
+  <div class="page-header-sub">Edit platform names, specifications, status, and feature tags.</div>
+</div>
+<div class="card">
+  <div class="card-title">Platform Registry — {{ systems|length }} Systems</div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Platform</th><th>Class</th><th>Designation</th><th>Status</th><th>Last Updated</th><th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sys in systems %}
+      <tr>
+        <td>
+          <div style="font-family:'Orbitron',monospace;font-size:.6rem;font-weight:700;color:#f0f0f0;letter-spacing:.05em;">{{ sys.name }}</div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.46rem;color:#555;margin-top:3px;">{{ sys.system_id }}</div>
+        </td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:.48rem;color:#cc0000;letter-spacing:.1em;text-transform:uppercase;">{{ sys.system_class }}</td>
+        <td style="font-size:.82rem;color:#888;">{{ sys.designation }}</td>
+        <td>
+          {% if sys.status == 'OPERATIONAL' %}<span class="badge badge-op"><span class="badge-dot"></span>Operational</span>
+          {% elif sys.status == 'DEVELOPMENT' %}<span class="badge badge-dev"><span class="badge-dot"></span>Development</span>
+          {% else %}<span class="badge badge-pro"><span class="badge-dot"></span>Prototype</span>
+          {% endif %}
+        </td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:.48rem;color:#555;">{{ sys.updated_at|date:"d M Y" }}</td>
+        <td><a href="{% url 'core:admin_system_edit' sys.id %}" class="btn btn-outline btn-sm">Edit &rarr;</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

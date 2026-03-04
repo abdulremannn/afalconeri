@@ -1,0 +1,85 @@
+{% extends 'core/admin/base_admin.html' %}
+{% block title %}Edit {{ system.name }}{% endblock %}
+{% block nav_sys %}active{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-label">Editing System</div>
+  <div class="page-header-title">{{ system.name }}</div>
+  <div class="page-header-sub">{{ system.designation }} &mdash; {{ system.system_class }}</div>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">Basic Information</div>
+      <div class="form-group">
+        <label class="form-label">System Image</label>
+        {% if system.image %}
+        <div style="margin-bottom:10px;border:1px solid #2a2a2a;padding:8px;background:#111;">
+          <img src="{{ system.image.url }}" style="width:100%;max-height:180px;object-fit:cover;display:block;">
+          <div style="font-family:'Share Tech Mono',monospace;font-size:.46rem;color:#555;margin-top:6px;letter-spacing:.1em;">Current image — upload new to replace</div>
+        </div>
+        {% endif %}
+        <input type="file" name="image" class="form-control" accept="image/*">
+        <div class="form-hint">JPG or PNG. Displays as full background on system cards.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Platform Name</label>
+        <input type="text" name="name" class="form-control" value="{{ system.name }}" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Designation / Subtitle</label>
+        <input type="text" name="designation" class="form-control" value="{{ system.designation }}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Class / Category</label>
+        <input type="text" name="system_class" class="form-control" value="{{ system.system_class }}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tagline</label>
+        <input type="text" name="tagline" class="form-control" value="{{ system.tagline }}">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Operational Status</label>
+        <select name="status" class="form-control">
+          <option value="OPERATIONAL" {% if system.status == 'OPERATIONAL' %}selected{% endif %}>Operational (Green)</option>
+          <option value="DEVELOPMENT" {% if system.status == 'DEVELOPMENT' %}selected{% endif %}>Development (Amber)</option>
+          <option value="PROTOTYPE"   {% if system.status == 'PROTOTYPE'   %}selected{% endif %}>Prototype (Gray)</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Description</label>
+        <textarea name="description" class="form-control" style="min-height:120px;">{{ system.description }}</textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Feature Tags</label>
+        <input type="text" name="features" class="form-control" value="{{ features_str }}" placeholder="Tag 1, Tag 2, Tag 3">
+        <div class="form-hint">Separate tags with commas</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Technical Specifications (up to 6)</div>
+      {% for spec in specs %}
+      <div class="spec-row" style="margin-bottom:12px;">
+        <div>
+          <label class="form-label">Label</label>
+          <input type="text" name="spec_label_{{ forloop.counter }}" class="form-control" value="{{ spec.label }}" placeholder="e.g. Max Speed">
+        </div>
+        <div>
+          <label class="form-label">Value</label>
+          <input type="text" name="spec_value_{{ forloop.counter }}" class="form-control" value="{{ spec.value }}" placeholder="e.g. 280 km/h">
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div style="display:flex;gap:12px;margin-top:4px;">
+    <button type="submit" class="btn btn-primary">Save Changes &rarr;</button>
+    <a href="{% url 'core:admin_systems' %}" class="btn btn-outline">Cancel</a>
+    <a href="{% url 'core:systems' %}#{{ system.system_id }}" target="_blank" class="btn btn-outline" style="margin-left:auto;">Preview on Site &#8599;</a>
+  </div>
+</form>
+{% endblock %}

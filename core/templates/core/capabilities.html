@@ -1,0 +1,83 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block title %}Capabilities — AFalconeri Technologies{% endblock %}
+{% block content %}
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-breadcrumb"><a href="{% url 'core:home' %}">Home</a> &nbsp;/&nbsp; Capabilities</div>
+    <h1 class="page-hero-title">Technical Capabilities</h1>
+    <p class="page-hero-sub">Core engineering competencies across aerospace, artificial intelligence, autonomous systems, and defense electronics.</p>
+  </div>
+</div>
+
+<div class="cap-index">
+  <div class="cap-index-inner">
+    <div class="cap-index-label">— Capability Index</div>
+    <div class="cap-index-grid">
+      {% for cap in capabilities %}
+      <a href="#{{ cap.id }}" class="cap-index-item">
+        <div class="cap-index-num">{{ cap.number }}</div>
+        <div class="cap-index-title">{{ cap.title }}</div>
+        <div class="cap-index-sub">{{ cap.subtitle }}</div>
+        <div class="cap-index-cta">VIEW →</div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% for cap in capabilities %}
+<div class="cap-section" id="{{ cap.id }}">
+  <div class="cap-section-inner">
+    <div class="cap-sidebar reveal-left">
+      <div class="cap-big-num" aria-hidden="true">{{ cap.number }}</div>
+      <div class="cap-label">Capability</div>
+      <h2 class="cap-title">{{ cap.title }}</h2>
+      <div class="cap-subtitle">{{ cap.subtitle }}</div>
+    </div>
+    <div class="reveal">
+      <p class="cap-desc">{{ cap.description }}</p>
+      <div class="cap-items">
+        {% for item in cap.items %}
+        <div class="cap-item"><div class="cap-item-dot" aria-hidden="true"></div><div class="cap-item-text">{{ item }}</div></div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+<section class="section" style="background:var(--black-2);border-top:1px solid var(--gray-line);">
+  <div class="section-inner">
+    <div class="cap-doctrine-grid">
+      <div>
+        <div class="section-label reveal">Engineering Doctrine</div>
+        <h2 class="section-title reveal stagger-1">Systems Built for<br>Real Conditions</h2>
+        <p style="font-size:clamp(.84rem,1.3vw,.95rem);color:var(--gray-text);line-height:1.8;margin-bottom:20px;" class="reveal stagger-2">Every AFalconeri system is engineered against adversarial assumptions. We do not design for ideal environments — we design for contested, degraded, and denied conditions where failure is not an option.</p>
+        <p style="font-size:clamp(.84rem,1.3vw,.95rem);color:var(--gray-text);line-height:1.8;margin-bottom:28px;" class="reveal stagger-3">Our engineering team draws from aerospace, military electronics, computer science, and operational backgrounds — bridging what is theoretically possible and what is operationally survivable.</p>
+        <div class="reveal stagger-4"><a href="{% url 'core:contact' %}" class="btn btn-primary">Technical Briefing Request <span class="btn-arrow">→</span></a></div>
+      </div>
+      <div class="cap-doctrine-cards">
+        <div class="cap-doctrine-card reveal stagger-1">
+          <div class="cap-doctrine-num">01</div>
+          <div><div class="cap-doctrine-title">Adversarial-First Design</div><div class="cap-doctrine-text">Every system assumes a sophisticated, well-equipped adversary attempting to defeat it.</div></div>
+        </div>
+        <div class="cap-doctrine-card reveal stagger-2">
+          <div class="cap-doctrine-num">02</div>
+          <div><div class="cap-doctrine-title">Modular Architecture</div><div class="cap-doctrine-text">Field-configurable payloads and open integration interfaces for mission adaptability.</div></div>
+        </div>
+        <div class="cap-doctrine-card reveal stagger-3">
+          <div class="cap-doctrine-num">03</div>
+          <div><div class="cap-doctrine-title">Redundant Systems</div><div class="cap-doctrine-text">Triple-redundant navigation, communication, and flight control on all mission-critical platforms.</div></div>
+        </div>
+        <div class="cap-doctrine-card reveal stagger-4">
+          <div class="cap-doctrine-num">04</div>
+          <div><div class="cap-doctrine-title">EW Hardening</div><div class="cap-doctrine-text">TEMPEST-standard electronics with full-spectrum electromagnetic attack resistance.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

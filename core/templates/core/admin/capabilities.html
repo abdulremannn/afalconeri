@@ -1,0 +1,32 @@
+{% extends 'core/admin/base_admin.html' %}
+{% block title %}Capabilities{% endblock %}
+{% block nav_cap %}active{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-label">Content Management</div>
+  <div class="page-header-title">Capabilities</div>
+  <div class="page-header-sub">Edit core technical competency sections displayed on the capabilities page.</div>
+</div>
+<div class="card">
+  <div class="card-title">Capability Sections — {{ caps|length }} Entries</div>
+  <table class="data-table">
+    <thead>
+      <tr><th>#</th><th>Title</th><th>Subtitle</th><th>Items</th><th>Last Updated</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      {% for cap in caps %}
+      <tr>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:.56rem;color:#cc0000;letter-spacing:.2em;">{{ cap.number }}</td>
+        <td>
+          <div style="font-family:'Orbitron',monospace;font-size:.58rem;font-weight:600;color:#f0f0f0;letter-spacing:.06em;">{{ cap.title }}</div>
+        </td>
+        <td style="font-size:.82rem;color:#888;">{{ cap.subtitle }}</td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:.5rem;color:#555;">{{ cap.get_items|length }} items</td>
+        <td style="font-family:'Share Tech Mono',monospace;font-size:.48rem;color:#555;">{{ cap.updated_at|date:"d M Y" }}</td>
+        <td><a href="{% url 'core:admin_capability_edit' cap.id %}" class="btn btn-outline btn-sm">Edit &rarr;</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

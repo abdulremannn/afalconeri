@@ -1,0 +1,62 @@
+{% extends 'core/admin/base_admin.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block nav_dash %}active{% endblock %}
+{% block content %}
+<div class="page-header">
+  <div class="page-header-label">Command Center</div>
+  <div class="page-header-title">Dashboard</div>
+  <div class="page-header-sub">Welcome back, {{ user.username|upper }}. All systems nominal.</div>
+</div>
+
+<div class="grid-3" style="margin-bottom:28px;">
+  <div class="stat-card">
+    <div class="stat-num">{{ systems_count }}</div>
+    <div class="stat-label">Drone Systems</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">{{ caps_count }}</div>
+    <div class="stat-label">Capabilities</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">{% if has_contact %}OK{% else %}—{% endif %}</div>
+    <div class="stat-label">Contact Info</div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Quick Actions</div>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <a href="{% url 'core:admin_systems' %}" class="btn btn-outline" style="justify-content:space-between;">
+        <span>&#9654; Manage Drone Systems</span><span style="color:#cc0000;">{{ systems_count }} platforms</span>
+      </a>
+      <a href="{% url 'core:admin_capabilities' %}" class="btn btn-outline" style="justify-content:space-between;">
+        <span>&#9654; Edit Capabilities</span><span style="color:#cc0000;">{{ caps_count }} sections</span>
+      </a>
+      <a href="{% url 'core:admin_contact' %}" class="btn btn-outline" style="justify-content:space-between;">
+        <span>&#9654; Update Contact Info</span><span style="color:#cc0000;">{% if has_contact %}Configured{% else %}Not set{% endif %}</span>
+      </a>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Site Status</div>
+    <div style="display:flex;flex-direction:column;gap:12px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #2a2a2a;">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:#888;letter-spacing:.1em;text-transform:uppercase;">Website</span>
+        <span class="badge badge-op"><span class="badge-dot"></span>Online</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #2a2a2a;">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:#888;letter-spacing:.1em;text-transform:uppercase;">Database</span>
+        <span class="badge badge-op"><span class="badge-dot"></span>Connected</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;">
+        <span style="font-family:'Share Tech Mono',monospace;font-size:.52rem;color:#888;letter-spacing:.1em;text-transform:uppercase;">Session</span>
+        <span class="badge badge-op"><span class="badge-dot"></span>Active</span>
+      </div>
+    </div>
+    <div style="margin-top:20px;">
+      <a href="{% url 'core:home' %}" target="_blank" class="btn btn-primary" style="width:100%;justify-content:center;">View Live Website &#8599;</a>
+    </div>
+  </div>
+</div>
+{% endblock %}
